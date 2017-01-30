@@ -1,0 +1,23 @@
+#
+#  Makefile.sigi4d-svr4 for CLIM 2.0
+#
+
+include Makefile.defs
+
+Makefile=Makefile.sgi4d-svr4
+
+TKLIB=-lXm
+XTLIB=-lXt
+XLIB=-lX11 # -lcvt
+
+XINCLUDES=-I/usr/include
+
+PRODUCT-OBJS = $(PRODUCT-GENERIC-OBJS) $(STATIC-XM-OBJS) $(SHARED-XM-OBJS)
+
+PICFLAGS = -KPIC -n32
+SHAREFLAGS = 
+MAKE_SHARED = ld -n32 -shared -all
+STD_DEFINES = -DSVR4
+AR = /usr/bin/ar cq
+
+include Makefile.generic

@@ -1,0 +1,7 @@
+;;; -*- Mode: Lisp; Package: CLSM -*-
+
+(in-package :CLSM)
+
+(load-logical-host "franz")
+
+(set-system-source-file :franz-demos "franz:demo;system.lisp")

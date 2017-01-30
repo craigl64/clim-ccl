@@ -1,0 +1,8 @@
+#
+#  Makefile.windows for CLIM 2.0
+
+include Makefile.defs
+
+Makefile=Makefile.windows
+
+include Makefile.generic

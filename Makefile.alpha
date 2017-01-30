@@ -1,0 +1,34 @@
+#
+#  Makefile.alpha for CLIM 2.0
+
+include Makefile.defs
+
+Makefile=Makefile.alpha
+
+ifeq ($(SIXTYFOURBIT),yes)
+CFLAGS = -O -G 0 -DAcl64Bit -resumption_safe
+else
+CFLAGS = -O -G 0 -taso -xtaso -xtaso_short -resumption_safe
+endif
+
+STD_DEFINES = -DDEC -DR5_XLIB -DSMT
+AR = ar cqls
+
+TKLIB=-lXm
+XTLIB=-lXt
+XLIB=-lX11
+
+XINCLUDES=-I/usr/include
+
+PRODUCT-OBJS= $(PRODUCT-GENERIC-OBJS) $(STATIC-XM-OBJS) $(SHARED-XM-OBJS)
+
+PICFLAGS =
+SHAREFLAGS =
+
+ifeq ($(SIXTYFOURBIT),yes)
+MAKE_SHARED = sh ../src/bin/make_shared.dec64
+else
+MAKE_SHARED = sh ../src/bin/make_shared.dec
+endif
+
+include Makefile.generic

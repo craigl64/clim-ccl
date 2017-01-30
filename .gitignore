@@ -1,0 +1,24 @@
+# .git-branch-name
+# *.tmp
+# *.a
+# *.o
+# *.so
+# *.dylib
+# stub-*.c
+# Clim-sizes.n
+# build.out
+# concat.out
+# *.dylib
+
+# SBCL Binary
+# *.fasl
+
+# LispWorks Binary
+# *.ufasl
+
+# Clozure CL Patterns x86/x86-64
+*.[dlw]x32fsl
+*.[dlw]x64fsl
+
+# Symbolics Genera Paterns
+*.{,i,v}bin

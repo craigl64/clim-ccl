@@ -1,0 +1,10 @@
+*.ps
+*.ps.Z
+*.dvi
+*.toc
+*.idx
+*.aux
+*.log
+*.ind
+*.ilg
+*.out

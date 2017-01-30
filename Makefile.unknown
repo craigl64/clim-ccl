@@ -1,0 +1,9 @@
+#
+#  Makefile.unknown for CLIM 2.0
+#
+
+# Provide enough structure to do a "make clean"
+
+include Makefile.defs
+
+include Makefile.generic

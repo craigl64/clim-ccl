@@ -1,0 +1,5 @@
+
+			    Notes for CLX
+
+Loading into SBCL:
+  (load "defsystem")

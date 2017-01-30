@@ -1,0 +1,53 @@
+#
+#  Makefile.macosx for CLIM 2.0
+#
+
+include Makefile.defs
+
+SHARED_EXT = dylib
+
+SHARED-XM-OBJS= climxm.dylib
+SHARED-OL-OBJS= climol.dylib
+
+Makefile=Makefile.macosx
+
+# removed /usr/local/lib:
+SET_LIBRARY_PATH = 
+
+#CL=../src/xm-dcl
+
+# Since the linker hard-codes the truenames of these libraries and
+# loading climxm.dylib fails when users attempt to load it with the
+# files missing, we use -weak-l and preload the libraries (see
+# tk/load-xm.lisp):
+TKLIB=-L/opt/local/lib -L/usr/local/lib -weak-lXm
+XTLIB=-L/usr/X11/lib -weak-lXt
+XLIB=-weak-lX11
+
+XINCLUDES=-I/usr/X11R6/include -I/opt/local/include -I/usr/local/include
+
+ifeq ($(SIXTYFOURBIT),yes)
+CFLAGS = -arch x86_64 -DAcl64Bit
+MAKE_SHARED = ld -arch x86_64 -bundle /usr/lib/bundle1.o -force_cpusubtype_ALL -flat_namespace
+else
+ifeq ($(MACHINE),x86)
+CFLAGS= -arch i386
+MAKE_SHARED = ld -arch i386 -bundle /usr/lib/bundle1.o -force_cpusubtype_ALL -flat_namespace
+else
+CFLAGS= 
+MAKE_SHARED = ld -bundle /usr/lib/bundle1.o -force_cpusubtype_ALL -flat_namespace
+endif
+endif
+
+PICFLAGS = 
+SHAREFLAGS = 
+AR = ar cq
+
+# Make sure the wnn build is happy:
+REDHATLIBS = -lc
+
+PRODUCT-OBJS= $(PRODUCT-GENERIC-OBJS) $(STATIC-XM-OBJS) $(SHARED-XM-OBJS)
+
+IMPORTS = stub-x.o stub-xt.o stub-motif.o
+
+include Makefile.generic

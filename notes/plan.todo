@@ -1,0 +1,61 @@
+%%% Part One
+
+% Xlib
+  * Support for CLIM [2w]
+
+% Xtk
+  * Support for CLIM [1w]
+
+% Xm
+  * Tidy up [2w]
+
+% Silica
+  * Complete [2w]
+  * Finish motif [1w]
+  
+% Clim
+  * Application frames [2w]
+    - Command menus
+    - multiple layout support
+    - Support for all the incremental redisplay stuff, determing size
+      of frames by running display function etc etc.
+  * Implement widget layout macros [1w]
+  * output-recording-defs [2d]
+    - Need to implement output-recording for all the different types
+      of output
+  * Menus [1w]
+  * General tidying up [2w]
+    - Spec conformance - names etc
+
+Total = 14weeks
+
+================================================ 
+
+%%% 
+
+% OLIT
+  * Implement for CLIM [1w]
+  * Full Interface [2w]
+
+% Silica
+  * OLIT [1w]
+
+% CLIM the next generation
+  * Accept <-> gadget interface
+
+  * Interface to UIL
+  * Interface to devGuide
+
+  * Support for programming in motif
+  * Support for programming in OpenLook
+
+====================================================
+
+%%%%%%%%%%%%%%%%%%%% &optional stuff
+
+% Xlib
+  * CLX level support [4w]
+
+% Xtk
+  * Full interface [2w]
+

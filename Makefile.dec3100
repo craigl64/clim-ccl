@@ -1,0 +1,15 @@
+#
+#  Makefile.dec3100 for CLIM 2.0
+#
+
+include Makefile.defs
+
+Makefile=Makefile.dec3100
+
+TKLIB=/usr/lib/DXM/lib/Xm/libXm.a
+XTLIB=/usr/lib/DXM/lib/Xt/libXt.a
+XLIB=/usr/lib/libX11.a
+
+XINCLUDES=-I/usr/lib/DXM/lib -I/usr/lib/DXM/lib/Xt
+
+include Makefile.generic

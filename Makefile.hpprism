@@ -1,0 +1,38 @@
+#
+#  Makefile.hpprism for CLIM 2.0
+#
+
+include Makefile.defs
+
+SHARED_EXT = sl
+
+SHARED-XM-OBJS= climxm.sl
+SHARED-OL-OBJS= climol.sl
+
+Makefile=Makefile.hpprism
+
+SET_LIBRARY_PATH = \
+	LPATH=/lib/pa1.1:/lib:/usr/lib:$(LPATH); export LPATH
+
+#CL=../src/xm-dcl
+
+STD_DEFINES = -DSYSV
+AR = ar clq
+
+#TKLIB=-lXm
+TKLIB=/lib/libXm.1
+XTLIB=-lXt
+XLIB=-lX11
+
+XINCLUDES= 
+
+CC= /usr/bin/cc
+CFLAGS= -O -Ae +DA1.1
+MOTIFXTRAS=-lc
+PICFLAGS = +Z
+SHAREFLAGS = 
+MAKE_SHARED = ld -b
+
+PRODUCT-OBJS= $(PRODUCT-GENERIC-OBJS) $(STATIC-XM-OBJS) $(SHARED-XM-OBJS)
+
+include Makefile.generic

@@ -1,0 +1,39 @@
+;;; -*- Mode: LISP -*-
+
+#-ANSI-CL (error "This file must be loaded into an ANSI-CL Lisp")
+
+
+#+CLSM
+(define-logical-host "xlib"
+  :translations (let ((path (make-pathname :directory (butlast (pathname-directory *load-truename*))
+                                           :name :wild :type :wild :version :wild
+                                           :defaults *load-truename*)))
+                  `(("**;*.*.*"
+                     ,(namestring
+                       (merge-pathnames
+                        (make-pathname :directory '(:relative :wild-inferiors)
+                                       :name :wild :type :wild :version :wild
+                                       :defaults path)
+                        path)))
+                    )))
+
+#-CLSM
+(progn
+(in-package :CL-USER)
+
+
+(let* ((truename *load-truename*)
+       (root (make-pathname :directory (butlast (pathname-directory truename))
+                            :name :wild :type :wild :version :wild
+                            :defaults truename)))
+  (setf (logical-pathname-translations "xlib")
+        `(("**;*.*.*"
+           ,(namestring
+             (merge-pathnames
+              (make-pathname
+               :directory '(:relative :wild-inferiors)
+               :name :wild :type :wild :version :wild
+               :defaults root)
+              root)))
+          )))
+)

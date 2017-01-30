@@ -1,0 +1,132 @@
+@numchapentry{Acknowledgments}{1}{Acknowledgments}{1}
+@numchapentry{Introduction to CLX}{2}{Introduction to CLX}{3}
+@numsecentry{The X Window System}{2.1}{The X Window System}{3}
+@numsubsecentry{Windows}{2.1.1}{Windows}{4}
+@numsubsecentry{Input Events}{2.1.2}{Input Events}{5}
+@numsecentry{A Quick Tour of CLX}{2.2}{A Quick Tour of CLX}{5}
+@numsubsecentry{A Simple Menu}{2.2.1}{A Simple Menu}{6}
+@numsubsecentry{Displaying the Menu}{2.2.2}{Displaying the Menu}{8}
+@numsubsecentry{Menu Input}{2.2.3}{Menu Input}{10}
+@numsubsecentry{The Main Program}{2.2.4}{The Main Program}{12}
+@numsubsecentry{Debugging With CLX}{2.2.5}{Debugging With CLX}{13}
+@numsecentry{Naming and Argument Conventions}{2.3}{Naming and Argument Conventions}{13}
+@numsecentry{Programming Considerations}{2.4}{Programming Considerations}{14}
+@numsecentry{Data Types}{2.5}{Data Types}{14}
+@numchapentry{Displays}{3}{Displays}{27}
+@numsecentry{Opening the Display}{3.1}{Opening the Display}{27}
+@numsecentry{Display Attributes}{3.2}{Display Attributes}{28}
+@numsecentry{Managing the Output Buffer}{3.3}{Managing the Output Buffer}{34}
+@numsecentry{Closing the Display}{3.4}{Closing the Display}{34}
+@numchapentry{Screens}{4}{Screens}{35}
+@numsecentry{Screens and Visuals}{4.1}{Screens and Visuals}{35}
+@numsecentry{Screen Attributes}{4.2}{Screen Attributes}{35}
+@numchapentry{Windows and Pixmaps}{5}{Windows and Pixmaps}{39}
+@numsecentry{Drawables}{5.1}{Drawables}{39}
+@numsecentry{Creating Windows}{5.2}{Creating Windows}{39}
+@numsecentry{Window Attributes}{5.3}{Window Attributes}{41}
+@numsecentry{Stacking Order}{5.4}{Stacking Order}{50}
+@numsecentry{Window Hierarchy}{5.5}{Window Hierarchy}{50}
+@numsecentry{Mapping Windows}{5.6}{Mapping Windows}{52}
+@numsecentry{Destroying Windows}{5.7}{Destroying Windows}{54}
+@numsecentry{Pixmaps}{5.8}{Pixmaps}{54}
+@numchapentry{Graphics Contexts}{6}{Graphics Contexts}{57}
+@numsecentry{Creating Graphics Contexts}{6.1}{Creating Graphics Contexts}{57}
+@numsecentry{Graphics Context Attributes}{6.2}{Graphics Context Attributes}{60}
+@numsecentry{Copying Graphics Contexts}{6.3}{Copying Graphics Contexts}{74}
+@numsecentry{Destroying Graphics Contexts}{6.4}{Destroying Graphics Contexts}{75}
+@numsecentry{Graphics Context Cache}{6.5}{Graphics Context Cache}{75}
+@numchapentry{Graphic Operations}{7}{Graphic Operations}{77}
+@numsecentry{Area and Plane Operations}{7.1}{Area and Plane Operations}{77}
+@numsecentry{Drawing Points}{7.2}{Drawing Points}{79}
+@numsecentry{Drawing Lines}{7.3}{Drawing Lines}{80}
+@numsecentry{Drawing Rectangles}{7.4}{Drawing Rectangles}{82}
+@numsecentry{Drawing Arcs}{7.5}{Drawing Arcs}{82}
+@numsecentry{Drawing Text}{7.6}{Drawing Text}{84}
+@numchapentry{Images}{8}{Images}{89}
+@numsecentry{Image Types}{8.1}{Image Types}{89}
+@numsubsecentry{Basic Images}{8.1.1}{Basic Images}{89}
+@numsubsecentry{XY-Format Images}{8.1.2}{XY-Format Images}{91}
+@numsubsecentry{Z-Format Images}{8.1.3}{Z-Format Images}{91}
+@numsecentry{Image Functions}{8.2}{Image Functions}{91}
+@numsecentry{Image Files}{8.3}{Image Files}{95}
+@numsecentry{Direct Image Transfer}{8.4}{Direct Image Transfer}{95}
+@numchapentry{Font and Characters}{9}{Font and Characters}{99}
+@numsecentry{Opening Fonts}{9.1}{Opening Fonts}{99}
+@numsecentry{Listing Fonts}{9.2}{Listing Fonts}{100}
+@numsecentry{Font Attributes}{9.3}{Font Attributes}{101}
+@numsecentry{Chracter Attributes}{9.4}{Chracter Attributes}{106}
+@numsecentry{Querying Text Size}{9.5}{Querying Text Size}{107}
+@numchapentry{Colors}{10}{Colors}{109}
+@numsecentry{Colormaps and Colors}{10.1}{Colormaps and Colors}{109}
+@numsecentry{Color Functions}{10.2}{Color Functions}{109}
+@numsecentry{Colormap Functions}{10.3}{Colormap Functions}{111}
+@numsubsecentry{Creating Colormaps}{10.3.1}{Creating Colormaps}{111}
+@numsubsecentry{Installing Colormaps}{10.3.2}{Installing Colormaps}{112}
+@numsubsecentry{Allocating Colors}{10.3.3}{Allocating Colors}{113}
+@numsubsecentry{Finding Colors}{10.3.4}{Finding Colors}{115}
+@numsubsecentry{Changing Colors}{10.3.5}{Changing Colors}{116}
+@numsubsecentry{Colormap Attributes}{10.3.6}{Colormap Attributes}{117}
+@numchapentry{Cursors}{11}{Cursors}{119}
+@numsecentry{Creating Cursors}{11.1}{Creating Cursors}{119}
+@numsecentry{Cursor Functions}{11.2}{Cursor Functions}{121}
+@numsecentry{Cursor Attributes}{11.3}{Cursor Attributes}{121}
+@numchapentry{Atoms, Properties and Selections}{12}{Atoms}{123}
+@numsecentry{Atoms}{12.1}{Atoms (Atoms)}{123}
+@numsecentry{Properties}{12.2}{Properties}{124}
+@numsecentry{Selections}{12.3}{Selections}{127}
+@numchapentry{Events and Input}{13}{Events and Input}{131}
+@numsecentry{Selecting Events}{13.1}{Selecting Events}{132}
+@numsecentry{Processing Events}{13.2}{Processing Events}{133}
+@numsecentry{Managing the Event Queue}{13.3}{Managing the Event Queue}{136}
+@numsecentry{Sending Events}{13.4}{Sending Events}{137}
+@numsecentry{Pointer Position}{13.5}{Pointer Position}{138}
+@numsecentry{Managing Input Focus}{13.6}{Managing Input Focus}{141}
+@numsecentry{Grabbing the Pointer}{13.7}{Grabbing the Pointer}{142}
+@numsecentry{Grabbing a Button}{13.8}{Grabbing a Button}{144}
+@numsecentry{Grabbing the Keyboard}{13.9}{Grabbing the Keyboard}{145}
+@numsecentry{Grabbing a Key}{13.10}{Grabbing a Key}{146}
+@numsecentry{Event Types}{13.11}{Event Types}{147}
+@numsubsecentry{Keyboard and Pointer Events}{13.11.1}{Keyboard and Pointer Events}{148}
+@numsubsecentry{Input Focus Events}{13.11.2}{Input Focus Events}{153}
+@numsubsecentry{Keyboard and Pointer State Events}{13.11.3}{Keyboard and Pointer State Events}{155}
+@numsubsecentry{Exposure Events}{13.11.4}{Exposure Events}{156}
+@numsubsecentry{Window State Events}{13.11.5}{Window State Events}{159}
+@numsubsecentry{Structure Control Events}{13.11.6}{Structure Control Events}{164}
+@numsubsecentry{Client Communications Events}{13.11.7}{Client Communications Events}{166}
+@numsubsecentry{Declaring Event Types}{13.11.8}{Declaring Event Types}{169}
+@numsecentry{Releasing Queued Events}{13.12}{Releasing Queued Events}{170}
+@numchapentry{Resources}{14}{Resources}{173}
+@numsecentry{Resource Binings}{14.1}{Resource Binings}{173}
+@numsecentry{Basic Resource Database Functions}{14.2}{Basic Resource Database Functions}{174}
+@numsecentry{Accessing Resource Values}{14.3}{Accessing Resource Values}{175}
+@numsubsecentry{Complete Names and Classes}{14.3.1}{Complete Names and Classes}{175}
+@numsubsecentry{Matching Resource Names}{14.3.2}{Matching Resource Names}{176}
+@numsubsecentry{Resource Access Functions}{14.3.3}{Resource Access Functions}{177}
+@numsecentry{Resource Database Files}{14.4}{Resource Database Files}{178}
+@numchapentry{Control Functions}{15}{Control Functions}{181}
+@numsecentry{Grabbing the Server}{15.1}{Grabbing the Server}{181}
+@numsecentry{Pointer Control}{15.2}{Pointer Control}{181}
+@numsecentry{Keyboard Control}{15.3}{Keyboard Control}{182}
+@numsecentry{Keyboard Encodings}{15.4}{Keyboard Encodings}{185}
+@numsubsecentry{Keycodes and Keysyms}{15.4.1}{Keycodes and Keysyms}{185}
+@numsubsecentry{Keyboard Mapping}{15.4.2}{Keyboard Mapping}{186}
+@numsubsecentry{Using Keycodes and Keysyms}{15.4.3}{Using Keycodes and Keysyms}{188}
+@numsecentry{Client Termination}{15.5}{Client Termination}{188}
+@numsecentry{Managing Host Access}{15.6}{Managing Host Access}{191}
+@numsecentry{Screen Saver}{15.7}{Screen Saver}{192}
+@numchapentry{Extensions}{16}{Extensions}{195}
+@numsecentry{Extensions}{16.1}{Extensions (Extensions)}{195}
+@numsecentry{SHAPE - The X11 Nonrectangular Window Shape Extension}{16.2}{SHAPE - The X11 Nonrectangular Window Shape Extension}{195}
+@numsecentry{RENDER - A new rendering system for X11}{16.3}{RENDER - A new rendering system for X11}{196}
+@numsubsecentry{Picture formats}{16.3.1}{Picture formats}{196}
+@numsubsecentry{The picture object}{16.3.2}{The picture object}{197}
+@numsubsecentry{Glyphs and Glyphsets}{16.3.3}{Glyphs and Glyphsets}{198}
+@numsubsecentry{Using glyphs}{16.3.4}{Using glyphs}{199}
+@numsubsecentry{Errors}{16.3.5}{Errors (Extensions)}{200}
+@numsecentry{DPMS - The X11 Display Power Management Signaling Extension}{16.4}{DPMS - The X11 Display Power Management Signaling Extension}{200}
+@numchapentry{Errors}{17}{Errors}{203}
+@numsecentry{Introduction}{17.1}{Introduction (Errors)}{203}
+@numchapentry{Undocumented}{18}{Undocumented}{209}
+@appentry{Glossary}{A}{Glossary}{213}
+@appentry{Function Index}{B}{Function Index}{225}
+@appentry{Type Index}{C}{Type Index}{231}

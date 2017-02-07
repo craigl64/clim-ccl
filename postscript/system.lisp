@@ -3,12 +3,12 @@
 (in-package :CL-USER)
 
 
-(clsm:define-system :postscript-franz
-        (:pretty-name "Franz PostScript CLIM"
-         :default-pathname  "franz:postscript;"
-         :journal-directory "franz:patches;"
+(clsm:define-system :postscript-clim
+        (:pretty-name "PostScript CLIM"
+         :default-pathname  "clim2:postscript;"
+         :journal-directory "clim2:patches;"
          :patchable t)
-  (:module clim (:clx-franz) (:type :system))
+  (:module clim (:clx-clim) (:type :system))
 
   (:serial clim
    "postscript-s"

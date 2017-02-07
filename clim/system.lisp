@@ -2,12 +2,12 @@
 
 (in-package :CL-USER)
 
-(clsm:define-system :franz-standalone
-      (:pretty-name "Franz CLIM Standalone"
-       :default-pathname  "franz:clim;"
-       :journal-directory "franz:patches;"
+(clsm:define-system :clim-standalone
+      (:pretty-name "CLIM Standalone"
+       :default-pathname  "clim2:clim;"
+       :journal-directory "clim2:patches;"
        :patchable t)
-  (:module silica (:franz-silica) (:type :system))
+  (:module silica (:clim-silica) (:type :system))
 
   (:serial silica
    "clim-defs" ;; mixed with CLIM Utils

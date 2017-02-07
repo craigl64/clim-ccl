@@ -13,10 +13,10 @@
 (pushnew :clim-2   *features*)
 (pushnew :clim-2.0 *features*)
 
-(clsm:define-system :franz-utils
-    (:pretty-name "Franz CLIM Utils"
-     :default-pathname  "franz:utils;"
-     :journal-directory "franz:patches;"
+(clsm:define-system :clim-utils
+    (:pretty-name "CLIM Utils"
+     :default-pathname  "clim2:utils;"
+     :journal-directory "clim2:patches;"
      :patchable t)
   (:module pkgs ("packages") (:type :lisp-read-only))
 

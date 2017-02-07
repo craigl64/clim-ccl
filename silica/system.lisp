@@ -3,12 +3,12 @@
 (in-package :CL-USER)
 
 
-(clsm:define-system :franz-silica
-        (:pretty-name "Franz CLIM Silica"
-         :default-pathname  "franz:silica;"
-         :journal-directory "franz:patches;"
+(clsm:define-system :clim-silica
+        (:pretty-name "CLIM Silica"
+         :default-pathname  "clim2:silica;"
+         :journal-directory "clim2:patches;"
          :patchable t)
-  (:module utils (:franz-utils) (:type :system))
+  (:module utils (:clim-utils) (:type :system))
 
   (:serial utils
    "classes"

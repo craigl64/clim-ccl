@@ -3,12 +3,12 @@
 (in-package :CL-USER)
 
 
-(clsm:define-system :franz-demos
-        (:pretty-name "Franz CLIM Demos"
-         :default-pathname  "franz:demo;"
-         :journal-directory "franz:patches;"
+(clsm:define-system :clim-demos
+        (:pretty-name "CLIM Demos"
+         :default-pathname  "clim2:demo;"
+         :journal-directory "clim2:patches;"
          :patchable t)
-  (:module clim (:clx-franz) (:type :system))
+  (:module clim (:clx-clim) (:type :system))
   (:module pkg ("packages") (:type :lisp-read-only))
 
   (:serial clim pkg

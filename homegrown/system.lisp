@@ -3,12 +3,12 @@
 (in-package :CL-USER)
 
 
-(clsm:define-system :franz-homegrown
-        (:pretty-name "Franz CLIM Homegrown"
-         :default-pathname  "franz:homegrown;"
-         :journal-directory "franz:patches;"
+(clsm:define-system :clim-homegrown
+        (:pretty-name "CLIM Homegrown"
+         :default-pathname  "clim2:homegrown;"
+         :journal-directory "clim2:patches;"
          :patchable t)
-  (:module standalone (:franz-standalone) (:type :system))
+  (:module standalone (:clim-standalone) (:type :system))
 
   (:serial standalone
    "db-button"

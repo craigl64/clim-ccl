@@ -4,10 +4,10 @@
 
 #+ANSI-CL (pushnew :clx-ansi-common-lisp *features*)
 
-(clsm:define-system :franz-xlib
-        (:pretty-name "Franz CLIM XLIB"
-         :default-pathname  "franz:xlib;"
-         :journal-directory "franz:patches;"
+(clsm:define-system :clim-xlib
+        (:pretty-name "CLIM XLIB"
+         :default-pathname  "clim2:xlib;"
+         :journal-directory "clim2:patches;"
          :patchable t)
   (:module pkg ("package") (:type :lisp-read-only))
 

@@ -1,3 +1,6 @@
+;;; -*- Mode: Lisp; Syntax: ANSI-Common-Lisp; Package: CL-USER; Base: 10 -*-
+#-Genera
+(in-package :CL-USER)
 
 ;;; This file was written by Earl DuCaine.  It may be used in
 ;;; accordance with the licence specified in the LICENSE file or the
@@ -64,6 +67,7 @@
      (:file "silica/db-slider")
      (:file "silica/db-label")
      (:file "silica/db-scroll")
+     (:file "silica/scroll-pane")
 
      ;; CLIM Stadalone
      (:file "clim/clim-defs")
@@ -236,37 +240,36 @@
 ;     (:file "postscript/laserwriter-metrics")
 ;;;     (:file "postscript/climps")
 
-     (:module demo
-	      :depends-on (:package :load-clim)
-	      :serial t
-	      :components
-	      (
-	       (:file "packages")
-	       (:file "demo-driver")
-	       (:file "address-book")
-	       (:file "bitmap-editor")
-	       (:file "browser")
-	       (:file "cad-demo")
-	       (:file "cload-demos")
-	       (:file "color-editor")
-	       (:file "custom-records")
-	       (:file "default-frame-top-level")
-	       (:file "demo-activity")
-	       (:file "demo-last")
-	       (:file "graphics-demos")
-	       (:file "graphics-editor")
-	       (:file "ico")
-	       #+Allegro (:file "japanese-graphics-editor")
-	       (:file "listener")
-	       (:file "navdata")
-	       (:file "navfun")
-	       (:file "palette")
-	       (:file "peek-frame")
-	       (:file "plot")
-	       #+Allegro (:file "process-browser")
-	       (:file "puzzle")
-	       (:file "thinkadot")
-	       ))
+;     (:module demo
+;	      :depends-on (:load-clim)
+;	      :serial t
+;	      :components
+;	      (
+     (:file "demo/packages")
+     (:file "demo/demo-driver")
+     (:file "demo/address-book")
+     (:file "demo/bitmap-editor")
+     (:file "demo/browser")
+     (:file "demo/cad-demo")
+     (:file "demo/cload-demos")
+     (:file "demo/color-editor")
+     (:file "demo/custom-records")
+     (:file "demo/default-frame-top-level")
+     (:file "demo/demo-activity")
+     (:file "demo/demo-last")
+     (:file "demo/graphics-demos")
+     (:file "demo/graphics-editor")
+     (:file "demo/ico")
+     #+Allegro (:file "demo/japanese-graphics-editor")
+     (:file "demo/listener")
+     (:file "demo/navdata")
+     (:file "demo/navfun")
+     (:file "demo/palette")
+     (:file "demo/peek-frame")
+     (:file "demo/plot")
+     #+Allegro (:file "demo/process-browser")
+     (:file "demo/puzzle")
+     (:file "demo/thinkadot")
 ;     (:file "clim-example" :depends-on (:demo))
 ;     (:file "test/test-suite")
      ))

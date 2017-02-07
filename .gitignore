@@ -11,14 +11,14 @@
 # *.dylib
 
 # SBCL Binary
-# *.fasl
+*.fasl
 
 # LispWorks Binary
-# *.ufasl
+*.ufasl
 
 # Clozure CL Patterns x86/x86-64
 *.[dlw]x32fsl
 *.[dlw]x64fsl
 
-# Symbolics Genera Paterns
+# Symbolics Genera Paterns (3600, Ivory, VLM)
 *.{,i,v}bin

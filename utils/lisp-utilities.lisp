@@ -363,7 +363,7 @@
 (defmacro repeat (n &body body)
   (let ((i '#:i))
     `(dotimes (,i ,n)
-       #-(or Minima Genera allegro) (declare (ignore i))
+;       #-(or Minima Genera Allegro) (declare (ignore ,i))
        ,@body)))
 
 
@@ -1491,8 +1491,8 @@
 (defmacro with-simple-abort-restart ((format-string &rest format-args) &body body)
   #+Genera `(scl:catch-error-restart ((sys:abort) ,format-string ,@format-args)
 	      ,@body)
-  #-Genera otherwise `(with-simple-restart (abort ,format-string ,@format-args)
-                       ,@body)
+  #-Genera `(with-simple-restart (abort ,format-string ,@format-args)
+             ,@body)
   )
 
 (defmacro with-simple-abort-restart-if (condition (format-string &rest format-args) &body body)

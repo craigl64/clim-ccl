@@ -1,0 +1,7 @@
+;;; -*- Mode: Lisp; Package: CLSM -*-
+
+(in-package :CLSM)
+
+(load-logical-host "clim2")
+
+(set-system-source-file :postscript-clim "clim2:postscript;system.lisp")

@@ -1,7 +1,0 @@
-;;; -*- Mode: Lisp; Package: CLSM -*-
-
-(in-package :CLSM)
-
-(load-logical-host "franz")
-
-(set-system-source-file :postscript-franz "franz:postscript;system.lisp")

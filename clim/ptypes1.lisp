@@ -273,11 +273,6 @@
 ;;; ACCEPTABLE-PRESENTATION-TYPE-CLASS, and PRESENTATION-TYPE-CLASS-P.
 (defclass presentation-type-class (standard-class #+Minima-Developer standard-object) ())
 
-(defmethod print-object ((obj presentation-type-class) stream)
-  (with-slots (ccl::name) obj
-    (print-unreadable-object (obj stream :type t :identity t)
-      (prin1 ccl::name stream))))
-
 ;;; JonL says that the latest CLOS spec says that you aren't allowed to mix
 ;;; objects of different metaclasses unless there is a VALIDATE-SUPERTYPE
 ;;; method that says that you can.

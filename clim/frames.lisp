@@ -537,7 +537,7 @@
     (setq frame-class frame-name))
   (when (or left top right bottom width height)
     (when (getf options :geometry)
-      (error "Cannot specify ~S and ~S, S, ~S, ~S, ~S, or ~S at the same time"
+      (error "Cannot specify ~S and ~S, ~S, ~S, ~S, ~S, or ~S at the same time"
              :geometry :left :top :right :bottom :width :height))
     (macrolet ((check-conflict (edge1 edge2 size)
                  `(cond

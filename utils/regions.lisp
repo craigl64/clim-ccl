@@ -8,71 +8,15 @@
 
 ;;; Generic Functions
 
-(defgeneric transform-region (transformation region))
-(defgeneric untransform-region (transformation region))
-
-(defgeneric point-position (point)
-  #-aclpc (declare (values x y)))
-(defgeneric point-x (point))
-(defgeneric point-y (point))
-
-;;--- Many of these methods could stand to be written...
-(defgeneric region-equal (region1 region2))
-(defgeneric region-contains-position-p (region x y))
-(defgeneric region-contains-region-p (region1 region2))
-(defgeneric region-intersects-region-p (region1 region2))
-
 (defgeneric region-set-function (region))
-(defgeneric region-set-regions (region &key normalize))
-(defgeneric map-over-region-set-regions (function region &key normalize)
-  (declare (dynamic-extent function)))
 
-(defgeneric region-union (region1 region2))
-(defgeneric region-intersection (region1 region2))
-(defgeneric region-difference (region1 region2))
+(defgeneric rectangle-edges* (rectangle))
 
-(defgeneric polyline-closed (polyline))
-(defgeneric polygon-points (polygon))
-(defgeneric map-over-polygon-coordinates (function polygon)
-  (declare (dynamic-extent function)))
-(defgeneric map-over-polygon-segments (function polygon)
-  (declare (dynamic-extent function)))
+(defgeneric ellipse-radii (ellipse))
 
-(defgeneric line-start-point (line))
-(defgeneric line-end-point (line))
-(defgeneric line-start-point* (line))
-(defgeneric line-end-point* (line))
-
-(defgeneric rectangle-min-point (rectangle))
-(defgeneric rectangle-max-point (rectangle))
-(defgeneric rectangle-edges* (rectangle)
-  #-aclpc (declare (values min-x min-y max-x max-y)))
-(defgeneric rectangle-min-x (rectangle))
-(defgeneric rectangle-min-y (rectangle))
-(defgeneric rectangle-max-x (rectangle))
-(defgeneric rectangle-max-y (rectangle))
-(defgeneric rectangle-width (rectangle))
-(defgeneric rectangle-height (rectangle))
-(defgeneric rectangle-size (rectangle)
-  #-aclpc (declare (values width height)))
-
-(defgeneric ellipse-center-point (ellipse))
-(defgeneric ellipse-center-point* (ellipse))
-(defgeneric ellipse-radii (ellipse)
-  #-aclpc (declare (values radius-1-dx radius-1-dy radius-2-dx radius-2-dy)))
-(defgeneric ellipse-start-angle (ellipse))
-(defgeneric ellipse-end-angle (ellipse))
-
-(defgeneric opacity-value (opacity))
-
-(defgeneric bounding-rectangle* (region)
-  #-aclpc (declare (values left top right bottom)))
-(defgeneric bounding-rectangle-set-edges (region left top right bottom)
-  #-aclpc (declare (values region)))
-(defgeneric bounding-rectangle-set-position (region x y)
-  #-aclpc (declare (values region)))
-(defgeneric bounding-rectangle-set-size (region width height)
-  #-aclpc (declare (values region)))
+(defgeneric bounding-rectangle-set-edges (region left top right bottom))
+(defgeneric bounding-rectangle-set-position (region x y))
+(defgeneric bounding-rectangle-set-size (region width height))
 
 (defmacro define-symmetric-region-method (name (region1 region2) &body body)
   `(progn
@@ -481,7 +425,8 @@
     (when (> y1 y2) (rotatef y1 y2))
     (make-bounding-rectangle-1 x1 y1 x2 y2)))
 
-(defmethod make-load-form ((rectangle standard-bounding-rectangle) #-aclpc &optional #-aclpc environment)
+(defmethod make-load-form ((rectangle standard-bounding-rectangle)
+                           #-aclpc &optional #-aclpc environment)
   #-aclpc (declare (ignore environment))
   (with-slots (left top right bottom) rectangle
     `(make-bounding-rectangle ,left ,top ,right ,bottom)))
@@ -610,25 +555,25 @@
 	  (bounding-rectangle-set-edges ,region ,@',edges)
 	  ,,new))))
 
-(defun-inline bounding-rectangle-min-x (region)
+(defmethod bounding-rectangle-min-x ((region standard-bounding-rectangle))
   (with-bounding-rectangle* (min-x min-y max-x max-y) region
     (declare (ignore min-y max-x max-y))
     min-x))
 (define-bounding-rectangle-setf min-x left)
 
-(defun-inline bounding-rectangle-min-y (region)
+(defmethod bounding-rectangle-min-y ((region standard-bounding-rectangle))
   (with-bounding-rectangle* (min-x min-y max-x max-y) region
     (declare (ignore min-x max-x max-y))
     min-y))
 (define-bounding-rectangle-setf min-y top)
 
-(defun-inline bounding-rectangle-max-x (region) 
+(defmethod bounding-rectangle-max-x ((region standard-bounding-rectangle)) 
   (with-bounding-rectangle* (min-x min-y max-x max-y) region
     (declare (ignore min-x min-y max-y))
     max-x))
 (define-bounding-rectangle-setf max-x right)
 
-(defun-inline bounding-rectangle-max-y (region) 
+(defmethod bounding-rectangle-max-y ((region standard-bounding-rectangle)) 
   (with-bounding-rectangle* (min-x min-y max-x max-y) region
     (declare (ignore min-x min-y max-x))
     max-y))
@@ -710,22 +655,19 @@
       (declare (type coordinate x2 y2))
       (position-difference x1 y1 x2 y2))))
 
-(defun-inline bounding-rectangle-width (region)
+(defmethod bounding-rectangle-width ((region standard-bounding-rectangle))
   (with-bounding-rectangle* (left top right bottom) region
     (declare (ignore top bottom))
     (- right left)))
 
-(defun-inline bounding-rectangle-height (region)
+(defmethod bounding-rectangle-height ((region standard-bounding-rectangle))
   (with-bounding-rectangle* (left top right bottom) region 
     (declare (ignore left right))
     (- bottom top)))
 
-(#-acl86win32 defun-inline #+acl86win32 defun bounding-rectangle-size (region)
+(defmethod bounding-rectangle-size ((rect standard-bounding-rectangle))
   (declare (values width height))
-  (with-bounding-rectangle* (left top right bottom) region 
-    #||(when (> right 10000) 
-       (setq *reg* region)
-       (cerror "continue" "look at *reg*"))||#
+  (with-bounding-rectangle* (left top right bottom) rect
     (values (- right left) (- bottom top))))
 
 ;; Set the size of the rectangle, and return the rectangle as the value

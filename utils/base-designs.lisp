@@ -13,12 +13,6 @@
 
 ;;; Generic Functions
 
-(defgeneric color-rgb (color))
-(defgeneric color-ihs (color))
-
-(defgeneric compose-over (design1 design2))
-(defgeneric compose-in (design1 design2))
-(defgeneric compose-out (design1 design2))
 
 (defgeneric make-flipping-ink (design1 design2))
 

@@ -8,37 +8,9 @@
 
 ;;; Generic Functions
 
-(defgeneric transformation-equal (transform1 transform2))
-
-(defgeneric identity-transformation-p (transform))
-(defgeneric translation-transformation-p (transform))
-(defgeneric invertible-transformation-p (transform))
-(defgeneric reflection-transformation-p (transform))
-(defgeneric rigid-transformation-p (transform))
-(defgeneric even-scaling-transformation-p (transform))
-(defgeneric scaling-transformation-p (transform))
-(defgeneric rectilinear-transformation-p (transform))
-
-(defgeneric compose-transformations (transform1 transform2))
-(defgeneric invert-transformation (transform))
 (defgeneric compose-translation-with-transformation (transform dx dy))
 (defgeneric compose-scaling-with-transformation (transform mx my &optional origin))
 (defgeneric compose-rotation-with-transformation (transform angle &optional origin))
-
-(defgeneric transform-position (transform x y)
-  #-aclpc (declare (values x y)))
-(defgeneric untransform-position (transform x y)
-  #-aclpc (declare (values x y)))
-
-(defgeneric transform-distance (transform dx dy)
-  #-aclpc (declare (values dx dy)))
-(defgeneric untransform-distance (transform dx dy)
-  #-aclpc (declare (values dx dy)))
-
-(defgeneric transform-rectangle* (transform x1 y1 x2 y2)
-  #-aclpc (declare (values x1 y1 x2 y2)))
-(defgeneric untransform-rectangle* (transform x1 y1 x2 y2)
-  #-aclpc (declare (values x1 y1 x2 y2)))
 
 
 ;;; Transformations

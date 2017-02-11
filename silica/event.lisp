@@ -8,7 +8,7 @@
 ;;; Portions copyright (c) 1992 Symbolics, Inc.  All rights reserved."
 
 
-(defgeneric process-next-event (port &key wait-function timeout))
+(defgeneric process-next-event (port &key wait-function timeout state))
 
 (defgeneric distribute-event (port event))
 (defgeneric dispatch-event (client event))

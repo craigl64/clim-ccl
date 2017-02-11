@@ -23,7 +23,7 @@
   (:serial pkgs
    #+Allegro "excl-verification"
    "defun-utilities"  "reader"  "processes"  "lisp-utilities"
-   "clos-patches"  "clos"  "utilities"  "queue"  "timers"
+   "clos-patches"  "clos" "generics" "utilities"  "queue"  "timers"
    "protocols"  "clim-streams"
    #+Allegro "excl-streams"
    "clim-macros"

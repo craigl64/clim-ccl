@@ -12,7 +12,7 @@
 
   (:serial utils
    "classes"
-;   "generics"
+   "generics"
    "text-style"
    "macros"
    "sheet"

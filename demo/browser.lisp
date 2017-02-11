@@ -707,7 +707,9 @@
 	   ;; This works for Genera Flavors because they are embedded in CLOS
 	   (let* ((class (class-of object))
 		  (slots (#-(or aclpc Clozure) clos:class-slots
-                          #+(or aclpc Clozure) class-slots class)))
+                          #+aclpc class-slots
+                          #+Clozure ccl:class-slots
+                          class)))
 	     (loop for slot in slots
 		   as slot-name = (#-(or aclpc Clozure) clos:slot-definition-name
                                    #+aclpc slot-definition-name

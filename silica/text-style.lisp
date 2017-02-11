@@ -610,8 +610,9 @@
       (load-specs nil nil nil spec))))
 
 (defmethod port-mapping-table ((port basic-port) character-set)
+  #-Allegro (declare (ignore character-set))
   (with-slots (mapping-table) port
-     #+allegro
+     #+Allegro
      (excl:ics-target-case
        (:-ics character-set mapping-table)
        (:+ics (let ((old-length (length mapping-table)))
@@ -620,12 +621,13 @@
                   (dotimes (i (- (length mapping-table) old-length))
                     (setf (aref mapping-table (+ i old-length)) (make-hash-table :test #'equal))))
                 (aref mapping-table character-set))))
-     #-allegro
+     #-Allegro
      mapping-table))
 
 (defmethod port-mapping-cache ((port basic-port) character-set)
+  #-Allegro (declare (ignore character-set))
   (with-slots (mapping-cache) port
-     #+allegro
+     #+Allegro
      (excl:ics-target-case
        (:-ics character-set mapping-cache)
        (:+ics (let ((old-length (length mapping-cache)))
@@ -634,7 +636,7 @@
                   (dotimes (i (- (length mapping-cache) old-length))
                     (setf (aref mapping-cache (+ i old-length)) (cons nil nil))))
                 (aref mapping-cache character-set))))
-     #-allegro
+     #-Allegro
      mapping-cache))
 
 (defmethod (setf text-style-mapping) (mapping (port basic-port) style

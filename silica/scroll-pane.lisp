@@ -240,7 +240,7 @@
         (:vertical (- bottom top))))))
 
 (defmethod scroll-up-line-callback ((scroll-bar scroll-bar-pane)
-                                    scroller-pane orientation value)
+                                    scroller-pane orientation &optional value)
   (declare (ignore value))
   (with-slots (current-size current-value port) scroll-bar
     (with-slots (viewport contents) scroller-pane
@@ -255,7 +255,7 @@
           scroll-bar scroller-pane orientation new-value current-size)))))
 
 (defmethod scroll-down-line-callback ((scroll-bar scroll-bar-pane)
-                                      scroller-pane orientation value)
+                                      scroller-pane orientation &optional value)
   (declare (ignore value))
   (with-slots (current-size current-value port) scroll-bar
     (with-slots (viewport contents) scroller-pane
@@ -270,7 +270,7 @@
           scroll-bar scroller-pane orientation new-value current-size)))))
 
 (defmethod scroll-up-page-callback ((scroll-bar scroll-bar-pane)
-                                    scroller-pane orientation value)
+                                    scroller-pane orientation &optional value)
   (declare (ignore value))
   (with-slots (current-size current-value) scroll-bar
     (with-slots (viewport contents) scroller-pane
@@ -286,7 +286,7 @@
           scroll-bar scroller-pane orientation new-value current-size)))))
 
 (defmethod scroll-down-page-callback ((scroll-bar scroll-bar-pane)
-                                      scroller-pane orientation value)
+                                      scroller-pane orientation &optional value)
   (declare (ignore value))
   (with-slots (current-size current-value) scroll-bar
     (with-slots (viewport contents) scroller-pane
@@ -301,12 +301,12 @@
       (scroll-bar-value-changed-callback
         scroll-bar scroller-pane orientation new-value current-size)))))
 
-(defmethod scroll-to-top-callback ((scroll-bar scroll-bar-pane) client id value)
+(defmethod scroll-to-top-callback ((scroll-bar scroll-bar-pane) client id &optional value)
   (declare (ignore value))
   (with-slots (current-size current-value) scroll-bar
     (scroll-bar-value-changed-callback scroll-bar client id 0 current-size)))
 
-(defmethod scroll-to-bottom-callback ((scroll-bar scroll-bar-pane) client id value)
+(defmethod scroll-to-bottom-callback ((scroll-bar scroll-bar-pane) client id &optional value)
   (declare (ignore value))
   (with-slots (current-size current-value) scroll-bar
     (scroll-bar-value-changed-callback

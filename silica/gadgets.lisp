@@ -401,32 +401,32 @@
 
 ;;; Here are the callbacks that were once called out in the CLIM spec:
 
-(defmethod scroll-to-bottom-callback ((pane scroll-bar) client id value)
+(defmethod scroll-to-bottom-callback ((pane scroll-bar) client id &optional value)
   (value-changed-callback pane client id value)
   (let ((callback (scroll-bar-scroll-to-bottom-callback pane)))
     (when callback (funcall callback pane))))
 
-(defmethod scroll-to-top-callback ((pane scroll-bar) client id value)
+(defmethod scroll-to-top-callback ((pane scroll-bar) client id &optional value)
   (value-changed-callback pane client id value)
   (let ((callback (scroll-bar-scroll-to-top-callback pane)))
     (when callback (funcall callback pane))))
 
-(defmethod scroll-up-line-callback ((pane scroll-bar) client id value)
+(defmethod scroll-up-line-callback ((pane scroll-bar) client id &optional value)
   (value-changed-callback pane client id value)
   (let ((callback (scroll-bar-scroll-up-line-callback pane)))
     (when callback (funcall callback pane))))
 
-(defmethod scroll-down-line-callback ((pane scroll-bar) client id value)
+(defmethod scroll-down-line-callback ((pane scroll-bar) client id &optional value)
   (value-changed-callback pane client id value)
   (let ((callback (scroll-bar-scroll-down-line-callback pane)))
     (when callback (funcall callback pane))))
 
-(defmethod scroll-up-page-callback ((pane scroll-bar) client id value)
+(defmethod scroll-up-page-callback ((pane scroll-bar) client id &optional value)
   (value-changed-callback pane client id value)
   (let ((callback (scroll-bar-scroll-up-page-callback pane)))
     (when callback (funcall callback pane))))
 
-(defmethod scroll-down-page-callback ((pane scroll-bar) client id value)
+(defmethod scroll-down-page-callback ((pane scroll-bar) client id &optional value)
   (value-changed-callback pane client id value)
   (let ((callback (scroll-bar-scroll-down-page-callback pane)))
     (when callback (funcall callback pane))))
@@ -881,61 +881,61 @@ The text-field must have the focus before you can call this function."))
 	(call-next-method))))
 
 
-;(defun update-dynamic-scroll-bars (scroller changedp
-;				    hscroll-bar hscroll-bar-enabled-p
-;				    vscroll-bar vscroll-bar-enabled-p
-;				    &optional relayout)
-;  (when changedp
-;    (when hscroll-bar
-;      (setf (sheet-enabled-p hscroll-bar) hscroll-bar-enabled-p))
-;    (when vscroll-bar
-;      (setf (sheet-enabled-p vscroll-bar) vscroll-bar-enabled-p))
-;    (when (or (and hscroll-bar (not hscroll-bar-enabled-p))
-;		(and vscroll-bar (not vscroll-bar-enabled-p)))
-;      (let* ((contents (slot-value scroller 'contents))
-;	       (c-extent (viewport-contents-extent
-;			  (pane-viewport contents))))
-;	  (multiple-value-bind (vx vy)
-;	     (window-viewport-position contents)
-;	    (window-set-viewport-position
-;	     contents
-;	     (if (and hscroll-bar (not hscroll-bar-enabled-p))
-;		 (bounding-rectangle-min-x c-extent)
-;		 vx)
-;	     (if (and vscroll-bar (not vscroll-bar-enabled-p))
-;		 (bounding-rectangle-min-y c-extent)
-;		 vy)))))
-;    (clear-space-requirement-caches-in-tree scroller)
-;    (when relayout
-;      ;;--- This is kinda bogus.  If this was a generic scroller then
-;      ;;--- you want to layout the table.
-;      (let ((table (slot-value scroller 'viewport)))
-;	  (multiple-value-bind (width height)
-;	      (bounding-rectangle-size table)
-;	    (allocate-space table width height))))))
+(defun update-dynamic-scroll-bars (scroller changedp
+				    hscroll-bar hscroll-bar-enabled-p
+				    vscroll-bar vscroll-bar-enabled-p
+				    &optional relayout)
+  (when changedp
+    (when hscroll-bar
+      (setf (sheet-enabled-p hscroll-bar) hscroll-bar-enabled-p))
+    (when vscroll-bar
+      (setf (sheet-enabled-p vscroll-bar) vscroll-bar-enabled-p))
+    (when (or (and hscroll-bar (not hscroll-bar-enabled-p))
+		(and vscroll-bar (not vscroll-bar-enabled-p)))
+      (let* ((contents (slot-value scroller 'contents))
+	       (c-extent (viewport-contents-extent
+			  (pane-viewport contents))))
+	  (multiple-value-bind (vx vy)
+	     (window-viewport-position contents)
+	    (window-set-viewport-position
+	     contents
+	     (if (and hscroll-bar (not hscroll-bar-enabled-p))
+		 (bounding-rectangle-min-x c-extent)
+		 vx)
+	     (if (and vscroll-bar (not vscroll-bar-enabled-p))
+		 (bounding-rectangle-min-y c-extent)
+		 vy)))))
+    (clear-space-requirement-caches-in-tree scroller)
+    (when relayout
+      ;;--- This is kinda bogus.  If this was a generic scroller then
+      ;;--- you want to layout the table.
+      (let ((table (slot-value scroller 'viewport)))
+	  (multiple-value-bind (width height)
+	      (bounding-rectangle-size table)
+	    (allocate-space table width height))))))
 
-;(defun compute-dynamic-scroll-bar-values (scroller)
-;  (let* ((hscroll-bar (scroller-pane-horizontal-scroll-bar scroller))
-;	  (vscroll-bar (scroller-pane-vertical-scroll-bar scroller))
-;	  (scroll-bar-policy (scroller-pane-scroll-bar-policy scroller)))
-;    (if (eq scroll-bar-policy :dynamic)
-;	 (multiple-value-bind (vwidth vheight)
-;	     (bounding-rectangle-size scroller)
-;	   (multiple-value-bind (cwidth cheight)
-;	       (bounding-rectangle-size
-;		 (viewport-contents-extent (slot-value scroller 'viewport)))
-;	     (let ((ohenp (sheet-enabled-p hscroll-bar))
-;		   (ovenp (sheet-enabled-p vscroll-bar))
-;		   (nhenp (> cwidth vwidth))
-;		   (nvenp (> cheight vheight)))
-;	       (values
-;		 (not (and (eq ohenp nhenp)
-;			   (eq ovenp nvenp)))
-;		 (and (not (eq ohenp nhenp)) hscroll-bar)
-;		 nhenp
-;		 (and (not (eq ovenp nvenp)) vscroll-bar)
-;		 nvenp))))
-;	 (values nil nil nil nil nil))))
+(defun compute-dynamic-scroll-bar-values (scroller)
+  (let* ((hscroll-bar (scroller-pane-horizontal-scroll-bar scroller))
+         (vscroll-bar (scroller-pane-vertical-scroll-bar scroller))
+         (scroll-bar-policy (scroller-pane-scroll-bar-policy scroller)))
+    (if (eq scroll-bar-policy :dynamic)
+	 (multiple-value-bind (vwidth vheight)
+	     (bounding-rectangle-size scroller)
+	   (multiple-value-bind (cwidth cheight)
+	       (bounding-rectangle-size
+		 (viewport-contents-extent (slot-value scroller 'viewport)))
+	     (let ((ohenp (sheet-enabled-p hscroll-bar))
+		   (ovenp (sheet-enabled-p vscroll-bar))
+		   (nhenp (> cwidth vwidth))
+		   (nvenp (> cheight vheight)))
+	       (values
+		 (not (and (eq ohenp nhenp)
+			   (eq ovenp nvenp)))
+		 (and (not (eq ohenp nhenp)) hscroll-bar)
+		 nhenp
+		 (and (not (eq ovenp nvenp)) vscroll-bar)
+		 nvenp))))
+	 (values nil nil nil nil nil))))
 
 (defun viewport-contents-extent (viewport)
   (let ((contents (sheet-child viewport)))

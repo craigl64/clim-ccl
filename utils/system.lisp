@@ -7,7 +7,7 @@
 
 #+CLozure (pushnew :CLIM-Uses-Lisp-Stream-Classes   *features*)
 #+Clozure (pushnew :CLIM-Uses-Lisp-Stream-Functions *features*)
-;;#+Clozure (pushnew :CLIM-Extends-CLOS               *features*)
+;#+Clozure (pushnew :CLIM-Extends-CLOS               *features*)
 
 (pushnew :clim     *features*)
 (pushnew :clim-2   *features*)

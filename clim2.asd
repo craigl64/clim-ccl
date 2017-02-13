@@ -6,7 +6,8 @@
 ;;; accordance with the licence specified in the LICENSE file or the
 ;;; MIT license.
 
-#+ANSI-CL (pushnew :ansi-90 *features*)
+#+ANSI-CL (pushnew :ANSI-90 *features*)
+#+ANSI-CL (pushnew :CLX-ANSI-Common-Lisp *features*)
 
 #+Clozure (pushnew :clim-uses-lisp-stream-classes   *features*)
 #+Clozure (pushnew :clim-uses-lisp-stream-functions *features*)
@@ -170,6 +171,14 @@
      (:file "xlib/glx")
      (:file "xlib/gl")
      (:file "xlib/dpms")
+
+     (:file "clx/pkgdcl")
+     (:file "clx/clx-port")
+     (:file "clx/clx-mirror")
+     (:file "clx/clx-medium")
+     (:file "clx/clx-pixmaps")
+     (:file "clx/clx-frames")
+     #+(or Genera Cloe-Runtime) (:file "clx-prefill")
 
 ;     #+Allegro (:file "tk/macros")
 ;     #+Allegro (:file "tk/xt-defs")

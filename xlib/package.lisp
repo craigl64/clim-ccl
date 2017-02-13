@@ -1,4 +1,4 @@
-;;; -*- Mode: LISP; Syntax: Common-lisp; Base: 10; Lowercase: Yes;  -*-
+;;; -*- Mode: LISP; Syntax: ANSI-Common-Lisp; Package: CL-USER;  Base: 10  -*-
 
 ;;; Copyright 1990 Massachusetts Institute of Technology, Cambridge,
 ;;; Massachusetts.  All Rights Reserved.

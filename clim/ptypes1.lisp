@@ -1617,7 +1617,7 @@
                                        0)))))))
     (call-next-method)))
 
-#+(and Genera CLIM-extends-CLOS)
+#+(and CLIM-extends-CLOS (or Genera Clozure))
 ;;; A lot like standard method combination, except for massaging of the
 ;;; presentation-type-parameters and -options arguments, using an
 ;;; extension to call-method

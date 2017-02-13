@@ -98,6 +98,9 @@
      (pointer-cursor :initarg :pointer-cursor :initform nil
                      :reader sheet-pointer-cursor)))
 
+(defmethod bounding-rectangle-size ((sheet basic-sheet))
+  (bounding-rectangle-size (sheet-region sheet)))
+
 
 (define-protocol-class medium ())
 

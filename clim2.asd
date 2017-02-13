@@ -10,7 +10,7 @@
 
 #+Clozure (pushnew :clim-uses-lisp-stream-classes   *features*)
 #+Clozure (pushnew :clim-uses-lisp-stream-functions *features*)
-#+Clozure (pushnew :clim-extends-clos               *features*)
+;#+Clozure (pushnew :clim-extends-clos               *features*)
 
 (pushnew :clim     *features*)
 (pushnew :clim-2   *features*)
@@ -23,13 +23,14 @@
     (
      ;; CLIM Utils
      (:file "utils/packages")
-     #+Allegro (:file "excl-verification")
+     #+Allegro (:file "utils/excl-verification")
      (:file "utils/defun-utilities")
      (:file "utils/reader")
      (:file "utils/processes")
      (:file "utils/lisp-utilities")
      (:file "utils/clos-patches")
      (:file "utils/clos")
+     (:file "utils/generics")
      (:file "utils/utilities")
      (:file "utils/queue")
      (:file "utils/timers")
@@ -46,6 +47,7 @@
 
      ;; CLIM Silica
      (:file "silica/classes")
+     (:file "silica/generics")
      (:file "silica/text-style")
      (:file "silica/macros")
      (:file "silica/sheet")

@@ -101,6 +101,12 @@
 (defmethod bounding-rectangle-size ((sheet basic-sheet))
   (bounding-rectangle-size (sheet-region sheet)))
 
+(defmethod bounding-rectangle-width ((sheet basic-sheet))
+  (bounding-rectangle-width (sheet-region sheet)))
+
+(defmethod bounding-rectangle-height ((sheet basic-sheet))
+  (bounding-rectangle-height (sheet-region sheet)))
+
 
 (define-protocol-class medium ())
 

@@ -440,7 +440,7 @@
   `(with-text-style (,medium (make-text-style nil nil ,size)) ,@body))
 
 (defoperation invoke-with-text-style medium-protocol
-  ((medium medium) style continuation original-stream))
+  ((medium medium) continuation style original-stream))
 
 (defmethod invoke-with-text-style ((medium basic-medium)
                                    continuation style original-stream)

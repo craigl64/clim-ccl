@@ -8,7 +8,7 @@
 
 (defgeneric viewport-region-changed (stream viewport))
 
-(defgeneric native-gadget-range* (gadget))
+(defgeneric clim-silica::native-gadget-range* (gadget))
 
 (defgeneric frame-shell (frame))
 (defgeneric (setf frame-shell) (value frame))
@@ -84,3 +84,5 @@
   )
 
 (defgeneric wait-for-window-exposed (window))
+
+(defgeneric maybe-redraw-input-editor-stream (stream region))

@@ -37,7 +37,7 @@
 (defmethod (setf stream-input-editor-stream) (value (stream standard-encapsulating-stream))
   (setf (stream-input-editor-stream (encapsulating-stream-stream stream)) value))
 
-(defun maybe-redraw-input-editor-stream (stream region)
+(defmethod maybe-redraw-input-editor-stream ((stream sheet) region)
   (let ((input-editor-stream (stream-input-editor-stream stream)))
     (when input-editor-stream
       (multiple-value-bind (x-pos y-pos)
@@ -393,7 +393,7 @@
 
 (defclass command-menu-pane (clim-stream-pane) ())
 
-(defun make-clim-stream-pane-1 (framem frame
+(defmethod make-clim-stream-pane-1 ((framem frame-manager) (frame application-frame)
                                 &rest options
                                 &key (type 'clim-stream-pane)
                                      label
@@ -402,8 +402,7 @@
                                      (borders t)
                                      (display-after-commands nil dac-p)
                                      background
-                                     name
-                                &allow-other-keys)
+                                     name)
   (with-look-and-feel-realization (framem frame)
     (setq options (remove-keywords options '(:type :scroll-bars :borders
                                              :label :label-alignment

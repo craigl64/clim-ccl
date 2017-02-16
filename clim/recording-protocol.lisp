@@ -667,7 +667,7 @@
            (make-bounding-rectangle left top right bottom)))
         (t region)))
 
-(defun replay (record stream &optional region)
+(defmethod replay ((record output-record-mixin) stream &optional region)
   (when (stream-drawing-p stream)
     (setq region (normalize-replay-region region stream))
     (multiple-value-bind (x-offset y-offset)

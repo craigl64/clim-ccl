@@ -238,7 +238,7 @@
 (defgeneric text-style-width          (text-style medium))
 (defgeneric text-style-fixed-width-p  (text-style medium))
 (defgeneric text-size                 (medium string &key text-style start end))
-(defgeneric invoke-with-text-style    (medium continuation text-style))
+(defgeneric invoke-with-text-style    (stream continuation text-style original-stream))
 (defgeneric text-tyle-mapping         (port text-style &optional character-set))
 (defgeneric (setf text-style-mapping) (mapping port text-style &optional character-set window))
 
@@ -326,6 +326,7 @@
 (defgeneric medium-buffering-output-p        (medium))
 (defgeneric (setf medium-buffering-output-p) (buffer-p medium))
 
+(defgeneric replay                                      (record stream &optional region))
 (defgeneric output-record-position                      (record))
 (defgeneric* (setf output-record-position)              (x y record))
 (defgeneric output-record-start-cursor-position         (record))
@@ -626,6 +627,7 @@
 (defgeneric (setf client-setting) (value frame-setting))
 (defgeneric reset-frame (frame &rest client-settings))
 
+(defgeneric make-clim-stream-pane-1 (frame-manager frame &key &allow-other-keys))
 (defgeneric make-pane-1 (realizer frame abstract-class-name &rest initargs))
 (defgeneric pane-frame (pane))
 (defgeneric pane-name (pane))

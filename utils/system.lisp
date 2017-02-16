@@ -22,8 +22,9 @@
 
   (:serial pkgs
    #+Allegro "excl-verification"
+   "cl-streams"
    "defun-utilities"  "reader"  "processes"  "lisp-utilities"
-   "clos-patches"  "clos" "generics" "utilities"  "queue"  "timers"
+   "clos-patches" "clos" "generics" "utilities"  "queue"  "timers"
    "protocols"  "clim-streams"
    #+Allegro "excl-streams"
    "clim-macros"
@@ -34,3 +35,21 @@
    "base-designs"
    "designs"
    ))
+
+;; Don't know how to fit these into the set of files for this directory
+;; autoconstructor
+;; #+CCL ccl-streams
+;; #-CLIM-uses-Lisp-stream-classes cl-stream-classes
+;; #-CLIM-uses-Lisp-stream-functions cl-stream-functions
+;; cl-streams
+;; #-ANSI-Conditions condpat
+;; #+CCL coral-char-bits
+;; ---- defpackage -- don't include
+;; ---- defun -- don't include
+;; #+Genera "genera-streams"
+;; ---- generics-limited -- don't include
+;; #+Allegro last
+;; ---- lisp-package-fixups -- don't include
+;; #+Lucid "lucid-before"
+;; #+Lucid "lucid-stream-functions"
+;; #+Minima "minima-stream-classes"

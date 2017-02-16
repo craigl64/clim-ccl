@@ -303,7 +303,7 @@ Revised and stripped down by Scott McKay (SWM@Symbolics.COM) for CLIM 2.0.
 	  (setq pipe
 		#+Allegro (excl:run-shell-command (first program)
                                                   :output :stream :wait nil)
-                #+Clozure (ccl:run-program (first program)
+                #+Clozure (ccl:run-program (first program) (rest program)
                                            :output stream :wait nil)
                 )
 	  (loop

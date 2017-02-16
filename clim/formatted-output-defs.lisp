@@ -168,11 +168,11 @@
                    &key (record-type `'standard-updating-output-record)
                         (unique-id `'assign-sequential-unique-IDs) (id-test `#'eql)
                         (cache-value `'unsupplied-cache-value) (cache-test `#'eql)
-                        copy-cache-value parent-cache
-                        output-record fixed-position all-new
+                        copy-cache-value parent-cache output-record
+                        fixed-position all-new
                    &allow-other-keys)
            &body body)
-  (declare (ignore fixed-position all-new))
+;  (declare (ignore fixed-position all-new))
   #+Genera (declare (zwei:indentation 0 3 1 1))
   (default-output-stream stream updating-output)
   `(flet ((updating-output-body (,stream) ,@body))

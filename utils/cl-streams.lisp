@@ -18,11 +18,12 @@
 ;;; Lisp package) and fake the "genericness" of the operation in order
 ;;; to fit into the existing implementation-dependent stream mechanisms.
 
-#-PCL
+#-(or Clozure PCL)
 (defgeneric streamp (stream))
 
+#-Clozure
 (defmethod STREAMP (stream)
-  (lisp:streamp stream))
+  (cl:streamp stream))
 
 ;;;
 
@@ -40,7 +41,7 @@
 
 #-Clozure
 (defmethod INPUT-STREAM-P (stream)
-  (lisp:input-stream-p stream))
+  (cl:input-stream-p stream))
 
 ;;;
 
@@ -49,7 +50,7 @@
 
 #-Clozure
 (defmethod OUTPUT-STREAM-P (stream)
-  (lisp:output-stream-p stream))
+  (cl:output-stream-p stream))
 
 ;;;
 
@@ -58,7 +59,7 @@
 
 #-Clozure
 (defmethod STREAM-ELEMENT-TYPE (stream)
-  (lisp:stream-element-type stream))
+  (cl:stream-element-type stream))
 
 ;;;
 
@@ -67,45 +68,37 @@
 
 #-Clozure
 (defmethod CLOSE (stream &key abort)
-  (lisp:close stream :abort abort))
+  (cl:close stream :abort abort))
 
 ;;;
 
 #-PCL
 (defgeneric pathname (stream))
 
+#-PCL
 (defmethod PATHNAME (stream)
   (cl:pathname stream))
 
-(deftype pathname () 'lisp:pathname)
+(deftype pathname () 'cl:pathname)
 
 ;;;
 
 #-PCL
 (defgeneric truename (stream))
 
+#-PCL
 (defmethod TRUENAME (stream)
   (cl:truename stream))
 
 ) ;; #-(or Cloe-Runtime ccl-2)
 
-#+Clozure
-(progn
-(defgeneric pathname (stream))
-(defmethod pathname (stream)
-  (cl:pathname stream))
 
-(defgeneric truename (stream))
-(defmethod truename (stream)
-  (cl:truename stream))
-) ;end #+Clozure
-
-#-Cloe-Runtime
+#-(or Clozure Cloe-Runtime)
 (progn
 
 (defmacro write-forwarding-cl-output-stream-function (name args &key #+Genera message)
-  (let* ((cl-name (find-symbol (symbol-name name) (find-package :lisp)))
-	 (method-name (intern (lisp:format nil "~A-~A" 'stream (symbol-name name))))
+  (let* ((cl-name (find-symbol (symbol-name name) (find-package :cl)))
+	 (method-name (intern (cl:format nil "~A-~A" 'stream (symbol-name name))))
 	 (optional-args (or (member '&optional args) (member '&key args)))
 	 (required-args (ldiff args optional-args))
 	 (optional-parameters (mapcan #'(lambda (arg)
@@ -189,7 +182,7 @@
 							  #+Genera message
 							  additional-arguments)
   (let* ((cl-name (find-symbol (symbol-name name) (find-package :lisp)))
-	 (method-name (intern (lisp:format nil "~A-~A" 'stream (symbol-name name))))
+	 (method-name (intern (cl:format nil "~A-~A" 'stream (symbol-name name))))
 	 (args (mapcar #'(lambda (var) (if (atom var) var (first var)))
 		       (order-preserving-set-difference lambda-list lambda-list-keywords)))
 	 (stream-args (remove 'stream args))
@@ -260,45 +253,44 @@
 ;;; Make FORMAT do something useful on CLIM windows.  (At least CLIM:FORMAT, that is.)
 ;;; This isn't needed in Genera and Cloe, where the system FORMAT works on CLIM windows.
 
-#-(or Genera ccl-2)
+#-(or Genera ccl-2 Clozure)
 (defun format (stream format-control &rest format-args)
   (when (null stream)
     (return-from format
-      (apply #'lisp:format nil format-control format-args)))
+      (apply #'cl:format nil format-control format-args)))
   (when (eq stream 't)
     (setq stream *standard-output*))
   (cond ((streamp stream)
 	 ;; this isn't going to quite work for ~&,
 	 ;; but it's better than nothing.
-	 (write-string (apply #'lisp:format nil format-control format-args) stream)
+	 (write-string (apply #'cl:format nil format-control format-args) stream)
 	 nil)
 	(t
-	 (apply #'lisp:format stream format-control format-args))))
+	 (apply #'cl:format stream format-control format-args))))
 
-) ;; #-Cloe-Runtime
+) ;; #-(or Clozure Cloe-Runtime)
 
 
 
-(defclass FUNDAMENTAL-STREAM (#+ccl-2 stream) ())
+#-Clozure
+(progn
 
+(defclass FUNDAMENTAL-STREAM (#+ccl-2 stream) ())
 (defmethod STREAMP ((stream fundamental-stream)) t)
 
 ;;;
 
 (defclass FUNDAMENTAL-INPUT-STREAM (fundamental-stream) ())
-
 (defmethod INPUT-STREAM-P ((stream fundamental-input-stream)) t)
 
 ;;;
 
 (defclass FUNDAMENTAL-OUTPUT-STREAM (fundamental-stream) ())
-
 (defmethod OUTPUT-STREAM-P ((stream fundamental-output-stream)) t)
 
 ;;;
 
 (defclass FUNDAMENTAL-CHARACTER-STREAM (fundamental-stream) ())
-
 (defmethod STREAM-ELEMENT-TYPE ((stream fundamental-character-stream)) 'character)
 
 ;;;
@@ -320,3 +312,4 @@
 (defclass FUNDAMENTAL-BINARY-OUTPUT-STREAM
 	  (fundamental-output-stream fundamental-binary-stream)
      ())
+) ;; #-Clozure

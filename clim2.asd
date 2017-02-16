@@ -25,6 +25,7 @@
      ;; CLIM Utils
      (:file "utils/packages")
      #+Allegro (:file "utils/excl-verification")
+     (:file "utils/cl-streams")
      (:file "utils/defun-utilities")
      (:file "utils/reader")
      (:file "utils/processes")
@@ -102,10 +103,12 @@
      (:file "clim/interactive-protocol")
      (:file "clim/input-editor-commands")
      (:file "clim/db-menu")
+
      (:file "clim/incremental-redisplay")
      (:file "clim/r-tree")
      (:file "clim/window-stream")
      (:file "clim/pixmap-streams")
+
      (:file "clim/completer")
      (:file "clim/histories")
      #+Allegro (:file "clim/excl-presentations")
@@ -128,6 +131,7 @@
      (:file "clim/noting-progress")
      (:file "clim/menus")
      (:file "clim/accept-values")
+
      (:file "clim/drag-and-drop")
      (:file "clim/item-list-manager")
      (:file "clim/stream-trampolines")
@@ -172,6 +176,7 @@
      (:file "xlib/gl")
      (:file "xlib/dpms")
 
+     ;; CLX CLIM Backend
      (:file "clx/pkgdcl")
      (:file "clx/clx-port")
      (:file "clx/clx-mirror")

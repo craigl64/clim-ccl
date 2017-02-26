@@ -39,9 +39,9 @@
 (defgeneric frame-user-specified-position-p (frame))
 (defgeneric frame-user-specified-size-p (frame))
 
-(defgeneric port-set-pane-text-style (port pane medium style))
-(defgeneric port-set-pane-background (port pane medium ink))
-(defgeneric port-set-pane-foreground (port pane medium ink))
+(defgeneric silica::port-set-pane-text-style (port pane medium style))
+(defgeneric silica::port-set-pane-background (port pane medium ink))
+(defgeneric silica::port-set-pane-foreground (port pane medium ink))
 (defgeneric clim-internals::port-query-pointer (port sheet))
 
 (defgeneric pointer-cursor (pointer))
@@ -84,5 +84,8 @@
   )
 
 (defgeneric wait-for-window-exposed (window))
+(defgeneric window-top-level-window (window))
 
 (defgeneric maybe-redraw-input-editor-stream (stream region))
+
+(defgeneric sheet-top-level-sheet (sheet))

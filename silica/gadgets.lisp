@@ -793,7 +793,7 @@ The text-field must have the focus before you can call this function."))
   ;; Make sure the child is at least as big as the viewport
   ;; (VIEWPORT-REGION-CHANGED actually does this also)
   (let* ((child (sheet-child viewport)))
-    (if (typep child 'clim-stream-pane)
+    (if (typep child 'basic-sheet) ;;(typep child 'clim-stream-pane)
 	(multiple-value-bind (cwidth cheight)
 	    (bounding-rectangle-size child)
 	  (when (or (< cwidth width)

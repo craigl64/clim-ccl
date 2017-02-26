@@ -131,7 +131,7 @@
         (sheet-children parent) nil))
 
 
-(defun sheet-top-level-sheet (sheet)
+(defmethod sheet-top-level-sheet ((sheet sheet-parent-mixin))
   (do* ((s sheet parent)
         (parent (sheet-parent s) parent-parent)
         (parent-parent (if parent (sheet-parent parent) t) (sheet-parent parent)))

@@ -69,9 +69,10 @@
            #+Genera array
            #-(or allegro Genera) array)
          (internal-binding-declarations (variables)
-           #+allegro `(declare (simple-vector ,@variables))
-           #+Genera `(declare (sys:array-register ,@variables))
-           #-(or allegro Genera) `(declare)))
+           #+Allegro `(declare (simple-vector ,@variables))
+           #+Clozure `(declare (simple-vector ,@variables))
+           #+Genera  `(declare (sys:array-register ,@variables))
+           #-(or Allegro Clozure Genera) `(declare)))
     (let* ((aref #+(or allegro Genera) 'svref
                  #-(or allegro Genera) 'aref)
            (macro-names (mapcar #'first macros-and-arrays))

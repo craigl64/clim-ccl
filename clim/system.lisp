@@ -10,11 +10,13 @@
   (:module silica (:clim-silica) (:type :system))
 
   (:serial silica
+   "defresource"
+   "temp-strings"
    "clim-defs" ;; mixed with CLIM Utils
    "ptypes1"   ;; mixed with CLIM Utils
 
    "recording-defs"  "gestures"  "defprotocol"  "stream-defprotocols"
-   "defresource"  "temp-strings"  "stream-class-defs"  "interactive-defs"
+   #|"defresource"|#  "stream-class-defs"  "interactive-defs"
    "cursor"  "view-defs"  "input-defs"  "input-protocol" "output-protocol"
    "formatted-output-defs"  "translators"  "ptypes2"  "command"
    "command-processor"  "recording-protocol"  "presentations"  "frames"
@@ -24,7 +26,6 @@
    "db-menu"
 
    "incremental-redisplay"  "r-tree"  "window-stream"  "pixmap-streams"
-;   "ptypes1"
 
    "completer"
 ;   "translators"

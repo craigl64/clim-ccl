@@ -1,4 +1,4 @@
-;; -*- mode: common-lisp; package: tk -*-
+;; -*- mode: Lisp; Syntax: ANSI-Common-Lisp; package: tk -*-
 ;; See the file LICENSE for the full license governing this code.
 ;;
 

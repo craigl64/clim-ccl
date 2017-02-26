@@ -203,6 +203,8 @@
 (defgeneric graft-pixels-per-millimeter (graft))
 (defgeneric graft-pixels-per-inch       (graft))
 
+(defgeneric application-frame-p (object))
+
 (defgeneric sheet-direct-mirror              (sheet))
 (defgeneric sheet-mirrored-ancestor          (sheet))
 (defgeneric sheet-mirror                     (sheet))

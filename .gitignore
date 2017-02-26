@@ -1,14 +1,3 @@
-# .git-branch-name
-# *.tmp
-# *.a
-# *.o
-# *.so
-# *.dylib
-# stub-*.c
-# Clim-sizes.n
-# build.out
-# concat.out
-# *.dylib
 
 # SBCL Binary
 *.fasl
@@ -16,9 +5,9 @@
 # LispWorks Binary
 *.ufasl
 
-# Clozure CL Patterns x86/x86-64
+# Clozure CL Patterns x86/x86-64 (Darwin, Linux, Windows)
 *.[dlw]x32fsl
 *.[dlw]x64fsl
 
-# Symbolics Genera Paterns (3600, Ivory, VLM)
+# Genera Paterns (3600, Ivory, VLM)
 *.{,i,v}bin

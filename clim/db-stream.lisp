@@ -615,7 +615,7 @@
 (defun window-root (window)
   (graft window))
 
-(defun-inline window-top-level-window (window)
+(defmethod window-top-level-window ((window sheet-parent-mixin))
   (sheet-top-level-sheet window))
 
 (defmethod window-stack-on-bottom ((stream clim-stream-sheet))

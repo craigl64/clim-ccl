@@ -74,14 +74,14 @@
      (:file "silica/scroll-pane")
 
      ;; CLIM Stadalone
+     (:file "clim/defresource")
+     (:file "clim/temp-strings")
      (:file "clim/clim-defs")
      (:file "clim/ptypes1")
      (:file "clim/recording-defs")
      (:file "clim/gestures")
      (:file "clim/defprotocol")
      (:file "clim/stream-defprotocols")
-     (:file "clim/defresource")
-     (:file "clim/temp-strings")
      (:file "clim/stream-class-defs")
      (:file "clim/interactive-defs")
      (:file "clim/cursor")

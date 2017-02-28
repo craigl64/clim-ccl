@@ -75,8 +75,8 @@
                                             spread-name
                                             spread-argument-names
                                             drawing-options
-                                            unspread-other-keyword-arguments
-                                            other-keyword-arguments
+                                            unspread-keywords
+                                            spread-keywords
                                             arguments
                                             keyword-arguments-to-spread)
   (declare (ignore spread-arguments))
@@ -88,7 +88,7 @@
              medium-or-stream
              ',medium-graphics-function-name
              ',drawing-options
-             ',other-keyword-arguments
+             ',spread-keywords
              (list ,@spread-argument-names)
              drawing-options-and-keyword-arguments)
            form))
@@ -99,7 +99,7 @@
              medium-or-stream
              ',medium-graphics-function-name
              ',drawing-options
-             ',unspread-other-keyword-arguments
+             ',unspread-keywords
              (list ,@unspread-argument-names)
              drawing-options-and-keyword-arguments
              ',arguments
@@ -124,6 +124,14 @@
       (values x (list x) (list x))))
 
 (defun decode-graphics-function-arguments (arguments keyword-arguments-to-spread)
+  ;; (values unspread-argument-names
+  ;;         spread-arguments
+  ;;         spread-argument-names
+  ;;         new-keyword-names
+  ;;         unspread-keyword-names
+  ;;         unspread-keywords
+  ;;         new-keywords 
+  ;;         keywords)
   (let* ((keyn (position '&key arguments))
          (no-keyword (subseq arguments 0 keyn))
          (keyword (and keyn (subseq arguments (1+ keyn))))
@@ -143,15 +151,33 @@
                                         keyword-arguments-to-spread)))
                           (if y (copy-list (cddr y)) (list x))))
                     keyword)))
-      (values (nreverse unspread-argument-names)
-              (nreverse spread-arguments)
-              (nreverse spread-argument-names)
-              (mapcar #'(lambda (x) (if (consp x) (car x) x)) new-keywords)
-              original-keywords
-              new-keywords
-              (mapcar #'(lambda (x)
-                          (intern (symbol-name (if (consp x) (car x) x)) :keyword))
-                      new-keywords)))))
+      (values
+       ;; unspread argument names
+       ;; (string-or-char point)
+       (nreverse unspread-argument-names)
+       ;; spread arguments
+       ;; (string-or-char (point-x point) (point-y point))
+       (nreverse spread-arguments)
+       ;; spread argument names
+       ;; (string-or-char x y)
+       (nreverse spread-argument-names)
+       ;; new keyword names
+       ;; (start end align-x align-y towards-x towards-y transform-glyphs)
+       (mapcar #'(lambda (x) (if (consp x) (car x) x)) new-keywords)
+       ;; original keyword names
+       ;; (start end align-x align-y towards-point transform-glyphs)
+       (mapcar #'(lambda (x) (if (consp x) (car x) x)) original-keywords)
+       ;; original keywords
+       ;; ((start 0) (end nil) (align-x :left) (align-y :baseline) towards-point transform-glyphs
+       original-keywords
+       ;; new keywords
+       ;; ((start 0) (end nil) (align-x :left) (align-y :baseline) towards-x towards-y transform-glyphs)
+       new-keywords
+       ;; keywords
+       ;; (:start :end :align-x :align-y :towards-x :towards-y :transform-glyphs)
+       (mapcar #'(lambda (x)
+                   (intern (symbol-name (if (consp x) (car x) x)) :keyword))
+               new-keywords)))))
 
 (defun transform-graphics-function-call (medium-or-stream
                                          medium-graphics-function-name
@@ -380,15 +406,19 @@
            (all-drawing-options-lambda-list drawing-options))
          (medium-graphics-function-name
            (fintern "~A~A*" 'medium- name)))
-    (multiple-value-bind (unspread-argument-names spread-arguments
-                          spread-argument-names keyword-argument-names
-                          unspread-other-keyword-arguments
-                          other-keyword-arguments keywords)
+    (multiple-value-bind (unspread-argument-names
+                          spread-arguments
+                          spread-argument-names
+                          spread-keyword-names
+                          unspread-keyword-names
+                          unspread-keywords
+                          spread-keywords
+                          keywords)
         (decode-graphics-function-arguments arguments keywords-to-spread)
       `(progn
          (defun ,name (medium ,@unspread-argument-names &rest args
-                       &key ,@drawing-options ,@unspread-other-keyword-arguments)
-           (declare (ignore ,@drawing-options ,@keyword-argument-names)
+                       &key ,@drawing-options ,@unspread-keywords)
+           (declare (ignore ,@drawing-options ,@unspread-keyword-names)
                     (dynamic-extent args))
            ,(if keywords-to-spread
                 `(with-keywords-removed
@@ -414,7 +444,7 @@
                         ,@spread-arguments
                         args)))
          (defun ,spread-name (medium ,@spread-argument-names &rest args
-                              &key ,@drawing-options ,@other-keyword-arguments)
+                              &key ,@drawing-options ,@spread-keywords)
            (declare (ignore ,@drawing-options)
                     (dynamic-extent args))
            ,(if keywords
@@ -423,7 +453,7 @@
                            (,medium-graphics-function-name
                               medium
                               ,@spread-argument-names
-                              ,@keyword-argument-names)))
+                              ,@spread-keyword-names)))
                      (declare (dynamic-extent #',continuation-name))
                      (apply #'invoke-with-drawing-options
                             medium #',continuation-name args)))
@@ -431,29 +461,29 @@
                          (,medium-graphics-function-name
                             medium
                             ,@spread-argument-names
-                            ,@keyword-argument-names)))
+                            ,@spread-keyword-names)))
                    (declare (dynamic-extent #',continuation-name))
                    (apply #'invoke-with-drawing-options
                           medium #',continuation-name args))))
          (setf (get ',name 'args)
-               '((,@spread-argument-names ,@keyword-argument-names)
+               '((,@spread-argument-names ,@spread-keyword-names)
                  ,@args))
          (defmethod ,medium-graphics-function-name
-                    ((sheet basic-sheet) ,@spread-argument-names ,@keyword-argument-names)
+                    ((sheet basic-sheet) ,@spread-argument-names ,@spread-keyword-names)
            #+Genera (declare (sys:function-parent ,name define-graphics-generic))
            (with-sheet-medium (medium sheet)
              (,medium-graphics-function-name medium
                                              ,@spread-argument-names
-                                             ,@keyword-argument-names)))
+                                             ,@spread-keyword-names)))
          (defmethod ,medium-graphics-function-name
                     ((sheet permanent-medium-sheet-output-mixin)
-                     ,@spread-argument-names ,@keyword-argument-names)
+                     ,@spread-argument-names ,@spread-keyword-names)
            #+Genera (declare (sys:function-parent ,name define-graphics-generic))
            (,medium-graphics-function-name (sheet-medium sheet)
                                            ,@spread-argument-names
-                                           ,@keyword-argument-names))
+                                           ,@spread-keyword-names))
          (defmethod ,medium-graphics-function-name :around
-                    ((medium basic-medium) ,@spread-argument-names ,@keyword-argument-names)
+                    ((medium basic-medium) ,@spread-argument-names ,@spread-keyword-names)
            #+Genera (declare (sys:function-parent ,name define-graphics-generic))
            ;; Want to tranform stuff, set up clipping region etc etc
            ,(or medium-method-body
@@ -479,7 +509,7 @@
                                                (medium-transformation medium) ,seq)))
                              position-sequences-to-transform)
                    (call-next-method medium
-                                     ,@spread-argument-names ,@keyword-argument-names))))
+                                     ,@spread-argument-names ,@spread-keyword-names))))
          ,@(write-graphics-function-transformer
              name
              medium-graphics-function-name
@@ -488,8 +518,8 @@
              spread-name
              spread-argument-names
              drawing-options
-             unspread-other-keyword-arguments
-             other-keyword-arguments
+             unspread-keywords
+             spread-keywords
              arguments
              keywords-to-spread)))))
 
